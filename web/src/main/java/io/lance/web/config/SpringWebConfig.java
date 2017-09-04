@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Author Lance.
  * Date: 2017-09-01 17:27
- * Desc:
+ * Desc: mvc配置
  */
 @Configuration
 public class SpringWebConfig {

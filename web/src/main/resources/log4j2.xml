@@ -9,6 +9,9 @@
     </Appenders>
 
     <Loggers>
+        <logger name="org.springframework.web" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
         <logger name="io.lance" level="info" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>

@@ -13,6 +13,14 @@ public class EbsException extends RuntimeException {
     //异常信息
     private String msg;
 
+    public EbsException() {
+    }
+
+    public EbsException(String msg) {
+        super(msg);
+        this.msg = msg;
+    }
+
     public EbsException(Integer code, String msg) {
         this.code = code;
         this.msg = msg;

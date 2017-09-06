@@ -1,0 +1,16 @@
+#server
+server:
+  port: 83
+  address: 127.0.0.1
+  session:
+    timeout: 30
+  context-path: /
+
+
+
+#freemarker
+spring:
+  freemarker:
+    suffix: .html
+    content-type: text/html;charset=UTF-8
+    request-context-attribute: request

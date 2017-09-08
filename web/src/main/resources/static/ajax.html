@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <title>ajax</title>
+</head>
+<body>
+<form id="upload-file-form" enctype="">
+    <label for="upload-file-input">Upload your file:</label>
+    <input id="upload-file-input" type="file" name="uploadfile" accept="*"/>
+</form>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#upload-file-input").on("change", uploadFile);
+    });
+
+    function uploadFile() {
+        $.ajax({
+            url: "/uploadFile",
+            type: "POST",
+            data: new FormData($("#upload-file-form")[0]),
+            enctype: 'multipart/form-data',
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
+                // Handle upload success
+                // ...
+            },
+            error: function () {
+                // Handle upload error
+                // ...
+            }
+        });
+    }
+</script>

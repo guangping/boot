@@ -3,17 +3,12 @@ package io.lance.web.config;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.google.common.collect.Lists;
 import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
-
-import java.util.List;
 
 /**
  * Author Lance.
@@ -26,10 +21,6 @@ public class SpringWebConfig {
     @Bean
     public RequestMappingHandlerAdapter requestMappingHandlerAdapter() {
         RequestMappingHandlerAdapter adapter = new RequestMappingHandlerAdapter();
-        List converters = Lists.newArrayList();
-        converters.add(fastJsonHttpMessageConverters());
-        converters.add(httpMessageConverters());
-        adapter.setMessageConverters(converters);
         return adapter;
     }
 
@@ -43,6 +34,7 @@ public class SpringWebConfig {
     /**
      * 使用fastjson作为json解析
      */
+    @Bean
     public HttpMessageConverters fastJsonHttpMessageConverters() {
         FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
@@ -59,25 +51,15 @@ public class SpringWebConfig {
         fastConverter.setFastJsonConfig(fastJsonConfig);
 
         //设置支持类型
-        List<MediaType> mediaTypes = Lists.newArrayList();
+       /* List<MediaType> mediaTypes = Lists.newArrayList();
         mediaTypes.add(new MediaType("text/plain;charset=UTF-8"));
         mediaTypes.add(new MediaType("text/html;charset=UTF-8"));
         mediaTypes.add(new MediaType("application/json;charset=UTF-8"));
         mediaTypes.add(new MediaType("text/xml;charset=UTF-8"));
-        fastConverter.setSupportedMediaTypes(mediaTypes);
+        fastConverter.setSupportedMediaTypes(mediaTypes);*/
 
         return new HttpMessageConverters(fastConverter);
     }
 
-    public HttpMessageConverters httpMessageConverters() {
-        StringHttpMessageConverter converter = new StringHttpMessageConverter();
-        List<MediaType> mediaTypes = Lists.newArrayList();
-        mediaTypes.add(new MediaType("text/plain;charset=UTF-8"));
-        mediaTypes.add(new MediaType("text/html;charset=UTF-8"));
-        mediaTypes.add(new MediaType("text/xml;charset=UTF-8"));
-        converter.setSupportedMediaTypes(mediaTypes);
-
-        return new HttpMessageConverters(converter);
-    }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.UUID;
 
 /**
  * Author Lance.
@@ -58,8 +59,10 @@ public class TokenController {
         if (StringUtils.isBlank(name) || StringUtils.isBlank(size)) {
             return "";
         }
-        int code = name.hashCode();
-        String token = (code > 0 ? "A" : "B") + Math.abs(code) + "_" + size.trim();
+        String token=UUID.randomUUID().toString().replaceAll("-", "")+ "_" + size.trim();
+
+       /* int code = name.hashCode();
+        String token = (code > 0 ? "A" : "B") + Math.abs(code) + "_" + size.trim();*/
         IoUtil.storeToken(token);
 
         return token;

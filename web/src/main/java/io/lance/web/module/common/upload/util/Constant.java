@@ -9,6 +9,8 @@ public interface Constant {
 
     int BUFFER_LENGTH = 4096;
 
+    int SIZE=4194304;//4M
+
     String CONTENT_RANGE_HEADER = "content-range";
 
     String START_FIELD = "start";

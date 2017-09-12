@@ -52,7 +52,7 @@ Messages:
         filesQueueHeight: 200, /** 文件上传容器的高度（px）, 默认: 450 */
         messagerId: "i_stream_message_container", /** 消息显示容器的ID, 默认: i_stream_message_container */
         tokenURL: "/token",
-        uploadURL: "/upload",
+        uploadURL: "/v2/upload",
         onRepeatedFile: function (f) {
             alert("文件：" + f.name + " 大小：" + f.size + " 已存在于上传队列中。");
             return false;

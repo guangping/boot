@@ -15,6 +15,9 @@
         <logger name="io.lance" level="info" additivity="false">
             <AppenderRef ref="Console"/>
         </logger>
+        <logger name="com.aliyun.oss" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </logger>
         <root level="info">
             <AppenderRef ref="Console"/>
         </root>

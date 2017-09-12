@@ -1,11 +1,13 @@
 package io.lance.web.module.common.upload.config;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -15,9 +17,7 @@ public class Configurations {
     private static final Logger logger = LogManager.getLogger(Configurations.class);
     static final String CONFIG_FILE = "stream-config.properties";
     private static Properties properties = null;
-    private static final String REPOSITORY = System.getProperty(
-            "java.io.tmpdir", File.separator + "tmp" + File.separator
-                    + "upload-repository");
+    private static final String REPOSITORY = System.getProperty("java.io.tmpdir");
 
     static {
         new Configurations();
@@ -59,10 +59,21 @@ public class Configurations {
     }
 
     public static String getFileRepository() {
-        String val = getConfig("STREAM_FILE_REPOSITORY");
-        if (val == null || val.isEmpty())
-            val = REPOSITORY;
-        return val;
+        StringBuilder path = new StringBuilder(200);
+     /*   Date date = new Date(System.currentTimeMillis());
+        String year = DateFormatUtils.format(date, "yyyy");
+        String month = DateFormatUtils.format(date, "MM");
+        String day = DateFormatUtils.format(date, "dd");*/
+
+        path.append(REPOSITORY);
+     /*   path.append(File.separator);
+        path.append(year);
+        path.append(File.separator);
+        path.append(month);
+        path.append(File.separator);
+        path.append(day);*/
+
+        return path.toString();
     }
 
     public static String getCrossServer() {

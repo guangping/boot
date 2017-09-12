@@ -1453,7 +1453,8 @@
 				name:	 file.get('name'),
 				type: file.get('type'),
 				size: file.get('size'),
-				modified: file.get("dateModified") + ""
+				modified: file.get("dateModified") + "",
+				index:index
 			};
 			vars = fMergeJson(vars, this.get("postVarsPerFile"));
 			var tokenUrl = fAddVars(vars, this.get("tokenURL")) + "&" + fGetRandom();
